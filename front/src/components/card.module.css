@@ -1,0 +1,23 @@
+.card {
+  text-align: center;
+  margin: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+  /* Styles de base de la carte */
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card.selected {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.cardValue {
+  width: 120px;
+  height: 120px;
+  display: block;
+}

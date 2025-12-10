@@ -1,9 +1,10 @@
 version: '3.8'
 
 services:
+  # PostgreSQL Database
   postgres:
-    image: postgres:15-alpine
-    container_name: myapp-postgres
+    image: postgres:16-alpine
+    container_name: pokerplanning-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -11,7 +12,58 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pokerplanning-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: pokerplanning-backend
+    environment:
+      PORT: 3001
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: mydb
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      NODE_ENV: production
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - pokerplanning-network
+    restart: unless-stopped
+    command: sh -c "npm run migrate && npm start"
+
+  # Frontend
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: pokerplanning-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - pokerplanning-network
+    restart: unless-stopped
+    environment:
+      VITE_API_URL: http://localhost:3001
 
 volumes:
-  postgres_data:
+  postgres-data:
+
+networks:
+  pokerplanning-network:
+    driver: bridge
