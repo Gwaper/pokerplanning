@@ -1,0 +1,8 @@
+{
+  "front/**/*.{js,jsx,ts,tsx,json}": [
+    "cd front && npm run lint"
+  ],
+  "back/**/*.{js,ts,json}": [
+    "cd back && npm run lint"
+  ]
+}

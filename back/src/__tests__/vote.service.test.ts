@@ -1,5 +1,5 @@
-import { voteService } from '../services/vote.service';
 import { voteDataAccess } from '../data-access/vote.data-access';
+import { voteService } from '../services/vote.service';
 
 // Mock du data-access
 jest.mock('../data-access/vote.data-access');
@@ -48,14 +48,12 @@ describe('VoteService', () => {
     });
 
     it('should throw error if userName is empty', async () => {
-      await expect(voteService.createVote(5, '')).rejects.toThrow(
-        'User name is required'
-      );
+      await expect(voteService.createVote(5, '')).rejects.toThrow('User name is required');
     });
 
     it('should throw error if value is not a number', async () => {
       await expect(voteService.createVote('invalidNumber' as any, 'John')).rejects.toThrow(
-        'Value must be a number'
+        'Value must be a number',
       );
     });
   });

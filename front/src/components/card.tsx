@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './card.module.css';
+import type React from 'react';
 import { CardSvg } from './CardSvg';
+import styles from './card.module.css';
 
 interface CardProps {
   cardContent: {
@@ -11,15 +11,17 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ cardContent, isSelected = false, onClick }) => {
-
   return (
-    <div
+    <button
+      type="button"
       className={`${styles.card} ${isSelected ? styles.selected : ''}`}
       onClick={onClick}
+      aria-label={`Card value ${cardContent.value}`}
+      aria-pressed={isSelected}
     >
       <div className={styles.cardValue}>
         <CardSvg value={cardContent.value} />
       </div>
-    </div>
+    </button>
   );
 };

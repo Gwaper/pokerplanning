@@ -1,6 +1,6 @@
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { pool } from '../config/database';
-import * as fs from 'fs';
-import * as path from 'path';
 
 async function runMigrations() {
   try {
@@ -17,18 +17,16 @@ async function runMigrations() {
 
     // Lire tous les fichiers de migration
     const migrationsDir = __dirname;
-    const files = fs.readdirSync(migrationsDir)
-      .filter(file => file.endsWith('.sql'))
+    const files = fs
+      .readdirSync(migrationsDir)
+      .filter((file) => file.endsWith('.sql'))
       .sort();
 
     for (const file of files) {
       const migrationName = file;
 
       // Vérifier si la migration a déjà été exécutée
-      const result = await pool.query(
-        'SELECT * FROM migrations WHERE name = $1',
-        [migrationName]
-      );
+      const result = await pool.query('SELECT * FROM migrations WHERE name = $1', [migrationName]);
 
       if (result.rows.length > 0) {
         console.log(`✓ Migration ${migrationName} already executed, skipping...`);
@@ -43,10 +41,7 @@ async function runMigrations() {
       await pool.query(sql);
 
       // Enregistrer la migration comme exécutée
-      await pool.query(
-        'INSERT INTO migrations (name) VALUES ($1)',
-        [migrationName]
-      );
+      await pool.query('INSERT INTO migrations (name) VALUES ($1)', [migrationName]);
 
       console.log(`✓ Migration ${migrationName} executed successfully`);
     }

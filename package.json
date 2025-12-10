@@ -1,0 +1,26 @@
+{
+  "name": "pokerplanning",
+  "version": "1.0.0",
+  "description": "- React 18+ avec TypeScript - Vite (build tool) - React Router DOM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gwaper/pokerplanning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Gwaper/pokerplanning/issues"
+  },
+  "homepage": "https://github.com/Gwaper/pokerplanning#readme",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7"
+  }
+}

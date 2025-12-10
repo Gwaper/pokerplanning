@@ -13,4 +13,3 @@ export const fibonacciValues: FibonacciCard[] = [
   { value: 34 },
   { value: 55 },
 ];
-

@@ -1,12 +1,12 @@
-import './App.css'
-import { PokerPlanning } from './pages/PokerPlanning'
+import './App.css';
+import { PokerPlanning } from './pages/PokerPlanning';
 
 function App() {
   return (
     <div className="app">
       <PokerPlanning />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

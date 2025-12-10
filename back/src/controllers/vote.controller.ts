@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { voteService } from '../services/vote.service';
 
 export class VoteController {

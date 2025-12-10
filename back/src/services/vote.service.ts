@@ -1,4 +1,4 @@
-import { voteDataAccess, CreateVoteDto, Vote } from '../data-access/vote.data-access';
+import { type CreateVoteDto, type Vote, voteDataAccess } from '../data-access/vote.data-access';
 
 export class VoteService {
   /**

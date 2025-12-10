@@ -1,8 +1,9 @@
-.pokerPlanning { 
-  align-items: center; 
-  text-align: center; /* Styles du conteneur principal */ 
-} 
-.cardsContainer { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); gap: 1em; 
+.pokerPlanning {
+  align-items: center;
+  text-align: center; /* Styles du conteneur principal */
+}
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
 }

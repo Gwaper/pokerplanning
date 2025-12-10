@@ -1,34 +1,31 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { Card } from '../components/card';
 import { voteService } from '../services/api';
+import { fibonacciValues } from '../utils/fibonacciArray';
 import styles from './PokerPlanning.module.css';
-import {fibonacciValues} from '../utils/fibonacciArray'
-
-
 
 export const PokerPlanning: React.FC = () => {
-  const [selectedCard, setSelectedCard] = useState<string | number | null>(null);
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
-  const handleCardClick = async (value: string | number) => {
+  const handleCardClick = async (value: number) => {
     setSelectedCard(value);
 
     try {
       await voteService.saveVote(value);
-    } catch (error) {
-    }
+    } catch (_error) {}
   };
 
   return (
- 
     <div className={styles.pokerPlanning}>
       <h3>Poker Planning</h3>
       <div className={styles.cardsContainer}>
-        {fibonacciValues.map((fibonacciValues, index) => (
+        {fibonacciValues.map((cardValue) => (
           <Card
-            key={index}
-            cardContent={fibonacciValues}
-            isSelected={selectedCard === fibonacciValues.value}
-            onClick={() => handleCardClick(fibonacciValues.value)}
+            key={cardValue.value}
+            cardContent={cardValue}
+            isSelected={selectedCard === cardValue.value}
+            onClick={() => handleCardClick(cardValue.value)}
           />
         ))}
       </div>
