@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docs:serve": "npx docsify-cli serve docs",
+    "docs:init": "npx docsify-cli init docs"
   },
   "repository": {
     "type": "git",
